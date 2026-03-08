@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class BusReservationSystem {
+
+    public static void main(String[] args) {
+
+        ArrayList<Bus> buses = new ArrayList<>();
+        buses.add(new Bus(1, 2));
+        buses.add(new Bus(2, 3));
+        buses.add(new Bus(3, 4));
+
+        Scanner sc = new Scanner(System.in);
+
+        for (Bus b : buses) {
+            b.displayBusInfo();
+        }
+
+        int userOpt = 1;
+
+        while (userOpt == 1) {
+
+            System.out.println("Enter Passenger Name:");
+            String name = sc.next();
+
+            System.out.println("Enter Bus Number:");
+            int busNo = sc.nextInt();
+
+            Booking booking = new Booking(name, busNo);
+
+            if (booking.isAvailable(buses)) {
+                Booking.bookings.add(booking);
+                System.out.println("Booking Confirmed");
+            } else {
+                System.out.println("Bus Full. Try another bus.");
+            }
+
+            System.out.println("Press 1 to continue booking or 2 to exit");
+            userOpt = sc.nextInt();
+        }
+    }
+}
